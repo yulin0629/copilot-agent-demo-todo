@@ -63,9 +63,10 @@ Agent 主導度：90%
 4. 強調這些都是真實的 GitHub Issues
 
 **預置的 Issues 範例**：
-- Issue #1: 添加清除已完成任務功能 (enhancement)
-- Issue #2: 修復過濾器狀態遺失問題 (bug)
-- Issue #3: 在標題顯示未完成任務數量 (enhancement)
+- Issue #1: 添加清除已完成任務的功能 (enhancement, good first issue)
+- Issue #2: 修復刪除任務後 LocalStorage 未更新的問題 (bug)  
+- Issue #3: 在頁面標題顯示未完成任務數量 (enhancement)
+- Issue #4: 添加鍵盤快捷鍵支援 (enhancement)
 
 #### 展示專案結構
 ```
