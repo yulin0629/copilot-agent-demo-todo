@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>待辦事項應用 - GitHub Agent 自動化範例</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 待辦事項</h1>
+            <p class="subtitle">GitHub Copilot Agent 自動化開發範例專案</p>
+        </header>
+
+        <div class="todo-input-section">
+            <input type="text" id="todoInput" placeholder="輸入新任務..." />
+            <button id="addTodo" class="btn btn-primary">新增</button>
+        </div>
+
+        <div class="todo-filters">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="active">未完成</button>
+            <button class="filter-btn" data-filter="completed">已完成</button>
+        </div>
+
+        <div class="todo-stats">
+            <div class="stat-item">
+                <span class="stat-label">總任務：</span>
+                <span class="stat-value" id="totalTasks">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">已完成：</span>
+                <span class="stat-value" id="completedTasks">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">完成率：</span>
+                <span class="stat-value" id="completionRate">0%</span>
+            </div>
+        </div>
+
+        <ul id="todoList" class="todo-list">
+            <!-- 待辦事項將動態插入這裡 -->
+        </ul>
+
+        <div class="info-section">
+            <h2>🤖 關於這個專案</h2>
+            <p>這是 GitHub Copilot Agent 自動化開發的範例專案。透過創建 GitHub Issue，Agent 可以自主分析需求、實作功能，並創建 Pull Request。</p>
+            
+            <div class="feature-request">
+                <h3>💡 建議的 Issue 範例：</h3>
+                <ul>
+                    <li>添加任務優先級功能（高/中/低）</li>
+                    <li>實現任務分類標籤</li>
+                    <li>添加任務截止日期</li>
+                    <li>匯出任務清單功能</li>
+                    <li>任務搜尋功能</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
