@@ -1,3 +1,7 @@
+---
+applyTo: '**'
+---
+
 # Pull Request 指引
 
 ## PR 創建標準
