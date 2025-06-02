@@ -1,0 +1,60 @@
+name: Reset Main Branch After Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "reset" to confirm'
+        required: true
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'reset'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      
+      - name: Reset main to gh-pages
+        run: |
+          # 直接從 gh-pages 分支重置 main
+          echo "從 gh-pages 分支重置 main..."
+          git fetch origin gh-pages
+          git reset --hard origin/gh-pages
+          git push --force origin main
+          
+          echo "✓ Main 分支已重置到 gh-pages 的狀態"
+      
+      - name: Close all open PRs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # 關閉所有開啟的 PRs（Demo 後應該只有 Demo 的 PR）
+          gh pr list --state open --json number --jq '.[].number' | \
+          xargs -I {} gh pr close {} --comment "Demo 結束 - 重置環境"
+      
+      - name: Reopen all closed issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # 重開所有已關閉的 issues（假設 Demo 時關閉的都要重開）
+          gh issue list --state closed --json number --jq '.[].number' | \
+          xargs -I {} gh issue reopen {} && echo "✓ 重開 Issue #{}"
+      
+      - name: Summary
+        run: |
+          echo "### Demo 環境重置完成! ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Main 分支已重置到 gh-pages 狀態" >> $GITHUB_STEP_SUMMARY
+          echo "- 所有 PR 已關閉" >> $GITHUB_STEP_SUMMARY
+          echo "- 所有 Issue 已重開" >> $GITHUB_STEP_SUMMARY
