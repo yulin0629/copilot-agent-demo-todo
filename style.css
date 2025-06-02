@@ -99,6 +99,18 @@ header h1 {
     box-shadow: 0 4px 12px rgba(76, 81, 191, 0.3);
 }
 
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-danger:hover {
+    background: #e53e3e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 101, 101, 0.3);
+}
+
 /* 過濾器 */
 .todo-filters {
     display: flex;

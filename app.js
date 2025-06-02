@@ -26,6 +26,9 @@ class TodoApp {
             if (e.key === 'Enter') this.addTodo();
         });
 
+        // 清除已完成任務
+        document.getElementById('clearCompleted').addEventListener('click', () => this.clearCompleted());
+
         // 過濾器
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', (e) => this.setFilter(e.target.dataset.filter));
@@ -66,6 +69,23 @@ class TodoApp {
         // BUG: 忘記呼叫 saveTodos()，導致刪除後重新整理會還原
         // this.saveTodos();
         this.render();
+    }
+
+    clearCompleted() {
+        const completedCount = this.todos.filter(t => t.completed).length;
+        
+        if (completedCount === 0) {
+            alert('沒有已完成的任務可以清除');
+            return;
+        }
+
+        const confirmed = confirm(`確定要清除 ${completedCount} 個已完成的任務嗎？此操作無法復原。`);
+        
+        if (confirmed) {
+            this.todos = this.todos.filter(t => !t.completed);
+            this.saveTodos();
+            this.render();
+        }
     }
 
     setFilter(filter) {
