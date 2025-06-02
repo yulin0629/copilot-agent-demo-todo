@@ -1,0 +1,50 @@
+name: Reset Demo Environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "reset" to confirm'
+        required: true
+        default: ''
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'reset'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Reset to initial commit
+        run: |
+          INITIAL_COMMIT=$(git rev-list --max-parents=0 HEAD)
+          git reset --hard $INITIAL_COMMIT
+          git push --force origin ${{ github.ref_name }}
+      
+      - name: Close all open PRs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr list --state open --json number --jq '.[].number' | \
+          xargs -I {} gh pr close {} --comment "Demo reset - closing PR"
+      
+      - name: Reopen demo issues
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # 重開 Issues 1-4
+          for i in 1 2 3 4; do
+            gh issue reopen $i || echo "Issue #$i might not exist"
+          done
+      
+      - name: Summary
+        run: |
+          echo "### Demo Reset Complete! ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- Repository reset to initial state" >> $GITHUB_STEP_SUMMARY
+          echo "- All PRs closed" >> $GITHUB_STEP_SUMMARY
+          echo "- Demo issues reopened" >> $GITHUB_STEP_SUMMARY
