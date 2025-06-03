@@ -1,6 +1,6 @@
 # 場景 8 - GitHub Repository 設置指南
 
-## 📋 課前準備步驟
+##  課前準備步驟
 
 ### 1. 創建新的 GitHub Repository
 - Repository 名稱：`copilot-agent-demo-todo`
@@ -71,8 +71,8 @@ git push -u origin main
 
 ### 4. 設置 Repository 權限
 - Settings → General → Features
-  - ✅ Issues
-  - ✅ Pull requests
+  -  Issues
+  -  Pull requests
 - Settings → Branches
   - 可選：設置 main branch 保護規則
 
@@ -92,14 +92,14 @@ git push -u origin main
 "選擇一個標記為 'good first issue' 的問題，完整實作並提交 PR"
 ```
 
-## 📌 課程當天檢查清單
+##  課程當天檢查清單
 - [ ] Repository 已創建並公開
 - [ ] 程式碼已推送
 - [ ] 3-5 個 Issues 已創建
 - [ ] `.github/copilot-instructions.md` 存在
 - [ ] 測試 Agent 可以正常讀取 repo
 
-## 💡 教學提示
+##  教學提示
 1. 展示前先在本地 clone 這個 repo
 2. 使用 VS Code 開啟，確保 GitHub Copilot 已啟用
 3. 可以準備一個已完成的 PR 作為範例展示
