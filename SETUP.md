@@ -1,106 +1,84 @@
-# 場景 8 - GitHub Repository 設置指南
+# 場景 8 - GitHub Agent 自動化：快速開始指南
 
-##  課前準備步驟
+在這個場景中，你將體驗 100% Agent 模式 - 從 Issue 到 PR 的完整自動化流程！
 
-### 1. 創建新的 GitHub Repository
-- Repository 名稱：`copilot-agent-demo-todo`
-- 描述：GitHub Copilot Agent 自動化開發展示
-- 設為 Public（方便學員觀看）
-- 不要初始化 README（我們會推送現有程式碼）
+## 🚀 三步驟快速開始
 
-### 2. 推送程式碼到新 Repo
-```bash
-# 在 08-comprehensive-project 目錄下
-git init
-git add .
-git commit -m "Initial commit: Todo app for Agent demo"
-git branch -M main
-git remote add origin https://github.com/[你的帳號]/copilot-agent-demo-todo.git
-git push -u origin main
+### 步驟 1：Fork Demo Repository
+1. 開啟瀏覽器，前往：https://github.com/yulin0629/copilot-agent-demo-todo
+2. 點擊右上角 **Fork** 按鈕
+3. 選擇你的帳號，完成 Fork
+4. 複製你的 Fork URL（例如：https://github.com/你的帳號/copilot-agent-demo-todo）
+
+### 步驟 2：讓 Agent 幫你設置（你的第一個 Agent 體驗！）
+在 VS Code 中開啟 Copilot Chat，選擇 **Agent 模式**，輸入：
+
+```
+請幫我更新 git remote 到 [貼上你的 Fork URL]
 ```
 
-### 3. 創建預置的 Issues
-
-#### Issue #1：添加清除已完成任務功能
+例如：
 ```
-標題：添加清除已完成任務的功能
-
-描述：
-希望能一次清除所有已完成的任務，讓列表保持整潔。
-
-需求：
-- 在介面上加入「清除已完成」按鈕
-- 點擊後刪除所有已標記完成的任務
-- 加入確認提示避免誤刪
-
-標籤：enhancement, good first issue
+請幫我更新 git remote 到 https://github.com/alice/copilot-agent-demo-todo
 ```
 
-#### Issue #2：修復過濾器狀態遺失問題
+💡 **觀察**：Agent 會自動執行正確的 git 指令！
+
+### 步驟 3：創建你的第一個 Issue
+1. 在瀏覽器中開啟你的 Fork
+2. 前往 Issues 頁面
+3. 創建新 Issue，例如：
+   - 標題：添加深色模式
+   - 內容：請為待辦事項應用添加深色模式切換功能
+   - 標籤：enhancement
+
+✅ **完成！** 現在你可以開始體驗 Agent 的威力了！
+
+## 🎯 Agent 實戰演練
+
+### Demo 1：單一 Issue 實作
+告訴 Agent：
 ```
-標題：修復重新整理頁面後過濾器狀態遺失
-
-描述：
-當選擇「未完成」過濾器後，重新整理頁面會回到「全部」。
-
-重現步驟：
-1. 點選「未完成」過濾器
-2. 重新整理頁面（F5）
-3. 過濾器回到「全部」狀態
-
-期望行為：
-過濾器狀態應該被記住
-
-標籤：bug
-```
-
-#### Issue #3：添加任務計數功能
-```
-標題：在頁面標題顯示未完成任務數量
-
-描述：
-希望在瀏覽器標籤上看到未完成的任務數量，方便快速了解待辦狀況。
-
-需求：
-- 在 document.title 顯示未完成數量
-- 格式：(3) 待辦事項
-- 即時更新
-
-標籤：enhancement
+查看我的 GitHub repo 中的 open issues，選擇一個來實作
 ```
 
-### 4. 設置 Repository 權限
-- Settings → General → Features
-  -  Issues
-  -  Pull requests
-- Settings → Branches
-  - 可選：設置 main branch 保護規則
-
-### 5. 準備 Demo 腳本
-在課程中，準備以下指令來展示：
-
-```markdown
-# Demo 腳本
-
-## 1. 基礎自動化
-"請查看 repo 中的所有 open issues，選擇 #1 來實作，完成後創建 PR"
-
-## 2. 批次分析
-"分析所有 open issues，評估每個的實作難度和所需時間"
-
-## 3. 完整自動化
-"選擇一個標記為 'good first issue' 的問題，完整實作並提交 PR"
+### Demo 2：完整自動化流程
+告訴 Agent：
+```
+請完成以下工作：
+1. 分析所有 open issues
+2. 選擇最簡單的一個
+3. 實作功能
+4. 創建 PR with 詳細說明
 ```
 
-##  課程當天檢查清單
-- [ ] Repository 已創建並公開
-- [ ] 程式碼已推送
-- [ ] 3-5 個 Issues 已創建
-- [ ] `.github/copilot-instructions.md` 存在
-- [ ] 測試 Agent 可以正常讀取 repo
+### Demo 3：批次處理（進階）
+```
+處理所有標記為 "good first issue" 的問題，為每個創建獨立的 PR
+```
 
-##  教學提示
-1. 展示前先在本地 clone 這個 repo
-2. 使用 VS Code 開啟，確保 GitHub Copilot 已啟用
-3. 可以準備一個已完成的 PR 作為範例展示
-4. 記得展示 GitHub 網頁上的 Issue 和 PR 頁面
+## 📝 建議的練習 Issues
+
+快速創建這些 Issues 來練習：
+
+1. **功能**：添加深色模式切換
+2. **Bug**：修復刪除任務後重新整理會還原的問題
+3. **功能**：在瀏覽器標題顯示未完成任務數量
+4. **功能**：添加任務到期日期
+5. **功能**：匯出任務為 JSON 格式
+
+## ⚡ 重要提醒
+
+- **這是 100% Agent 模式練習** - 讓 Agent 完成所有工作！
+- **不要手動修改程式碼** - 觀察 Agent 如何理解需求並實作
+- **專注於下指令** - 練習如何給 Agent 清晰的指示
+- **觀察 Agent 的決策** - 了解 AI 如何分析和解決問題
+
+## ❓ 需要幫助？
+
+遇到問題時，直接問 Agent：
+- "請檢查我的 git remote 設定"
+- "為什麼我無法 push 到 GitHub"
+- "如何創建 GitHub Issue"
+
+記住：Agent 可以幫你解決大部分技術問題！
